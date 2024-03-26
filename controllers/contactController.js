@@ -20,6 +20,7 @@ const getContact = (req, res) => {
 
 const createContact = (req, res) => {
     res.status(201).json({ message: "Create contact"});
+    console.log("The request body is:", req.body);
 };
 
 //@description update specific contact
