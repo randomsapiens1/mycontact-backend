@@ -18,15 +18,20 @@ const getContact = (req, res) => {
 //@routes POST /api/contacts/:id
 //@access public
 
-const createContact = (req, res) => {
+const createContact = (req, res, next) => {
     console.log("The request body is:", req.body);
-    const{name, email, phone} = req.body;
-    if(!name || !email || !phone) {
-        res.status(400);
-        throw new Error ("All fields are mandatory")
+    const { name, email, phone } = req.body;
+    if (!name || !email || !phone) {
+        const err = new Error("All fields are mandatory");
+        err.statusCode = 400;
+        return next(err);
     }
-    res.status(201).json({ message: "Create contact"});
+    res.status(201).json({ message: "Contact created successfully" });
 };
+
+module.exports = { createContact };
+
+
 
 //@description update specific contact
 //@routes UPDATE /api/contacts/:id
