@@ -47,6 +47,9 @@ const errorHandler = (err, req, res, next) => {
             });
             break;
     }
+
+    // Call the next middleware if exists
+    next(err);
 };
 
 module.exports = errorHandler;
